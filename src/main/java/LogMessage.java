@@ -1,42 +1,36 @@
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.BiFunction;
 import java.util.function.Supplier;
-import java.util.stream.Collector;
 
-import static java.util.Optional.empty;
-import static java.util.Optional.of;
 import static java.util.stream.Collectors.joining;
 
+@RequiredArgsConstructor
 public class LogMessage {
 
     private List<LogField> fields = new ArrayList<>();
+    private final String delimiter;
+    private final LogField.FieldFormatter formatter;
 
-    private Optional<BiFunction<String, String, String>> fieldFormat = empty();
-
-    private Collector<CharSequence, ?, String> fieldJoiner = joining(", ");
+    public LogMessage() {
+       delimiter = ", ";
+       formatter = LogField.FieldFormatter.DEFAULT_FIELD_FORMAT;
+    }
 
     public void add(String name, String value) {
-       fields.add(new LogField(name, () -> value));
+        fields.add(new LogField(name, () -> value));
     }
 
     public void add(String name, Supplier<String> value) {
         fields.add(new LogField(name, value));
     }
 
-    public void fieldFormat(BiFunction<String, String, String> fieldFormat) {
-        this.fieldFormat = of(fieldFormat);
-    }
-
-    public void joiningBy(String delimiter) {
-        this.fieldJoiner = joining(delimiter);
-    }
-
     public String build() {
         return fields
                 .stream()
-                .map(field -> fieldFormat.isPresent() ? field.formatted(fieldFormat.get()) : field.toString())
-                .collect(fieldJoiner);
+                .map(field -> field.formatted(formatter))
+                .collect(joining(delimiter));
     }
+
 }
