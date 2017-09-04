@@ -1,5 +1,6 @@
 import lombok.RequiredArgsConstructor;
 
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import static java.lang.String.format;
@@ -13,5 +14,9 @@ public class LogField {
     @Override
     public String toString() {
         return format("%s=\"%s\"", name, value.get());
+    }
+
+    String formatted(BiFunction<String, String, String> formatter) {
+        return formatter.apply(name, value.get());
     }
 }
