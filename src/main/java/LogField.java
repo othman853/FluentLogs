@@ -14,7 +14,7 @@ public class LogField {
 
     @FunctionalInterface
     interface FieldFormatter {
-        FieldFormatter DEFAULT_FIELD_FORMAT = (name, value) -> String.format("a");
+        FieldFormatter DEFAULT_FIELD_FORMAT = (name, value) -> String.format("%s=\"%s\"", name, value);
 
         String format(String name, String value);
     }

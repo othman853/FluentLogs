@@ -32,5 +32,4 @@ public class LogMessage {
                 .map(field -> field.formatted(formatter))
                 .collect(joining(delimiter));
     }
-
 }
