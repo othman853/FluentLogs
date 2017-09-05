@@ -1,9 +1,11 @@
+package com.othman853.fluentlogs;
+
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Supplier;
 
 @RequiredArgsConstructor
-public class LogField {
+class LogField {
 
     private final String name;
     private final Supplier<String> value;
@@ -13,7 +15,7 @@ public class LogField {
     }
 
     @FunctionalInterface
-    interface FieldFormatter {
+    public interface FieldFormatter {
         FieldFormatter DEFAULT_FIELD_FORMAT = (name, value) -> String.format("%s=\"%s\"", name, value);
 
         String format(String name, String value);

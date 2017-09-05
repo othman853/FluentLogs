@@ -1,3 +1,5 @@
+package com.othman853.fluentlogs;
+
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Consumer;

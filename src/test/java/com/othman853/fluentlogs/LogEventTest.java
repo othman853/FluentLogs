@@ -1,3 +1,5 @@
+package com.othman853.fluentlogs;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,6 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.function.Consumer;
 
+import static com.othman853.fluentlogs.LogMessage.defaultMessage;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -18,7 +21,7 @@ public class LogEventTest {
 
     @Before
     public void setup() {
-       event = new LogEvent(new LogMessage(), logger);
+       event = new LogEvent(defaultMessage(), logger);
     }
 
     @Test

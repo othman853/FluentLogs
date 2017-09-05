@@ -1,3 +1,5 @@
+package com.othman853.fluentlogs;
+
 import org.junit.Test;
 
 import static java.lang.String.format;
