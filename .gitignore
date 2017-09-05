@@ -1,3 +1,5 @@
 .idea
 FluentLogs.iml
 out/
+.gradle
+build/
